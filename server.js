@@ -14,13 +14,15 @@ const cors = require('cors');
 app.use(cors());
 
 // Initialize project folder
-app.use(express.static('demo'));
+app.use(express.static('client'));
 
 const port = 3030;
 // Spin up a server
 const server = app.listen(port, listening);
 // Another way of doing that with an arrow function
 // const server = app.listen(port, ()=>{console.log(`running on localhost: ${port}`)});
+
+let data = [];
 
 function listening() {
     console.log('server running');
@@ -33,4 +35,8 @@ app.get('/', function (req, res) {
 
 app.get('/all', (req, res) => {
     res.send(appData);
+})
+
+app.post('/animal', (req, res) => {
+  data.push(req.body);
 })
